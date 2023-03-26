@@ -29,11 +29,23 @@ class CarService {
   static async getCarById(id: string): Promise<Car | null> {
     const carODM = new CarODM();
     const car = await carODM.findById(id);
-    const wasCarFound = this.createCarDomain(car);
-
+    
     if (!car) return car;
     
+    const wasCarFound = this.createCarDomain(car);
     return wasCarFound;
+  }
+
+  static async updateCarById(id: string, dataForUpdate: ICar): Promise<Car | null> {
+    const carODM = new CarODM();
+    
+    const updatedCarData = await carODM.updateOne(id, dataForUpdate);
+    
+    // console.log('Service', updatedCarData);
+    if (!updatedCarData) return updatedCarData;
+    const wasCarUpdated = this.createCarDomain(updatedCarData);
+
+    return wasCarUpdated;
   }
 }
 

@@ -18,4 +18,8 @@ routes.get(
   (req, res, next) => CarController.getCarById(req, res, next),
 );
 
+routes.put(
+  '/:id',
+  CarController.updateCarById,
+);
 export default routes;
