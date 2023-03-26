@@ -17,24 +17,25 @@ class MotorcycleService {
     return motorcycleCreated;
   }
   
-  // static async getAllCars(): Promise<Car[] | null> {
-  //   const carODM = new CarODM();
-  //   const cars = await carODM.find();
+  static async getAllMotorcycles(): Promise<Motorcycle[] | null> {
+    const motorcycleODM = new MotorcycleODM();
+    const motorcycles = await motorcycleODM.find();
 
-  //   const listCars = cars.map((car) => this.createCarDomain(car));
+    const listMotorcycles = motorcycles
+      .map((motorcycle) => this.createMotorcycleDomain(motorcycle));
 
-  //   return listCars as Car[];
-  // }
+    return listMotorcycles as Motorcycle[];
+  }
 
-  // static async getCarById(id: string): Promise<Car | null> {
-  //   const carODM = new CarODM();
-  //   const car = await carODM.findById(id);
+  static async getMotorcycleById(id: string): Promise<Motorcycle | null> {
+    const motorcycleODM = new MotorcycleODM();
+    const motorcycle = await motorcycleODM.findById(id);
     
-  //   if (!car) return car;
+    if (!motorcycle) return motorcycle;
     
-  //   const wasCarFound = this.createCarDomain(car);
-  //   return wasCarFound;
-  // }
+    const wasmotorcycleFound = this.createMotorcycleDomain(motorcycle);
+    return wasmotorcycleFound;
+  }
 
   // static async updateCarById(id: string, dataForUpdate: ICar): Promise<Car | null> {
   //   const carODM = new CarODM();

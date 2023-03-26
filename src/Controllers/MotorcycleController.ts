@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-// import { isValidObjectId } from 'mongoose';
+import { isValidObjectId } from 'mongoose';
 import IMotorcycle from '../Interfaces/IMotorcycle';
 import MotorcycleService from '../Services/MotorcycleService';
 
@@ -17,27 +17,27 @@ class MotorcycleController {
     }
   }
 
-  // static async getAllCars(_req: Request, res: Response, next: NextFunction) {
-  //   try {
-  //     const listCars = await MotorcycleService.getAllCars();
-  //     return res.status(200).json(listCars);      
-  //   } catch (error) {
-  //     next(error);
-  //   }
-  // }
+  static async getAllMotorcycles(_req: Request, res: Response, next: NextFunction) {
+    try {
+      const listMotocycles = await MotorcycleService.getAllMotorcycles();
+      return res.status(200).json(listMotocycles);      
+    } catch (error) {
+      next(error);
+    }
+  }
 
-  // static async getCarById(req: Request, res: Response, _next: NextFunction) {
-  //   const { id } = req.params;
+  static async getMotorcycleById(req: Request, res: Response, _next: NextFunction) {
+    const { id } = req.params;
     
-  //   try {
-  //     isValidObjectId(id);
-  //     const car = await MotorcycleService.getCarById(id);
-  //     if (!car) return res.status(404).json({ message: 'Car not found' });
-  //     return res.status(200).json(car);
-  //   } catch (error) {
-  //     return res.status(422).json({ message: 'Invalid mongo id' });
-  //   }
-  // }
+    try {
+      isValidObjectId(id);
+      const motorcycle = await MotorcycleService.getMotorcycleById(id);
+      if (!motorcycle) return res.status(404).json({ message: 'Motorcycle not found' });
+      return res.status(200).json(motorcycle);
+    } catch (error) {
+      return res.status(422).json({ message: 'Invalid mongo id' });
+    }
+  }
 
   // static async updateCarById(req: Request, res: Response, _next: NextFunction) {
   //   try {
