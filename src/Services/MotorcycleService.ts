@@ -37,16 +37,17 @@ class MotorcycleService {
     return wasmotorcycleFound;
   }
 
-  // static async updateCarById(id: string, dataForUpdate: ICar): Promise<Car | null> {
-  //   const carODM = new CarODM();
+  static async updateMotorcycleById(id: string, dataForUpdate: IMotorcycle): 
+  Promise<Motorcycle | null> {
+    const motorcycleODM = new MotorcycleODM();
     
-  //   const result = await carODM.updateOne(id, dataForUpdate);
-  //   if (!result) return result;
+    const result = await motorcycleODM.updateOne(id, dataForUpdate);
+    if (!result) return result;
 
-  //   const updatedCarData = await this.getCarById(id);
+    const updatedMotorcycleData = await this.getMotorcycleById(id);
 
-  //   return updatedCarData;
-  // }
+    return updatedMotorcycleData;
+  }
 }
 
 export default MotorcycleService;
