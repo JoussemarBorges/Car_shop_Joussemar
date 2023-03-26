@@ -1,4 +1,4 @@
-import { Model, Schema, model, models, UpdateQuery } from 'mongoose';
+import { Model, Schema, model, models } from 'mongoose';
 
 abstract class AbstractODM<T> {
   readonly model: Model<T>;
@@ -21,10 +21,10 @@ abstract class AbstractODM<T> {
     return this.model.findById(id);
   } 
 
-  public async updateOne(id: string, dataForUpdate: T): Promise<T | null> {
-    await this.model.updateOne({ id }, { $set: { ...dataForUpdate } as UpdateQuery<T> });
+  public async updateOne(id: object | number | string, dataForUpdate: object): Promise<T | null> {
+    const result = await this.model.findByIdAndUpdate(id, { $set: { ...dataForUpdate } });
 
-    return this.findById(id);
+    return result;
   } 
 }
 

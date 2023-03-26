@@ -43,14 +43,12 @@ class CarController {
     try {
       const { id } = req.params;
       const dataForUpdate = req.body;
-      console.log(id);
       
-      // isValidObjectId(id);
+      isValidObjectId(id);
       const updatedCarData = await CarService.updateCarById(id, dataForUpdate);
-      console.log(updatedCarData);
       
-      if (!updatedCarData) res.status(404).json({ message: 'Car not Found' });
-      return res.status(201).json(updatedCarData);
+      if (!updatedCarData) return res.status(404).json({ message: 'Car not found' });
+      return res.status(200).json(updatedCarData);
     } catch (error) {
       return res.status(422).json({ message: 'Invalid mongo id' });
     }
