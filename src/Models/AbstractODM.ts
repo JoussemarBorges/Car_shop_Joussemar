@@ -29,7 +29,12 @@ abstract class AbstractODM<T> {
       .findByIdAndUpdate(id, { $set: { ...dataForUpdate } }, { new: true });
 
     return result;
-  } 
+  }
+  
+  public async deleteById(id: string) {
+    const result = await this.model.findByIdAndDelete(id);
+    return result;
+  }
 }
 
 export default AbstractODM;

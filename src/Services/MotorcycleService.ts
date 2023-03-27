@@ -47,6 +47,14 @@ class MotorcycleService {
     const updatedMotorcycle = this.createMotorcycleDomain(result);
     return updatedMotorcycle;
   }
+
+  static async deleteById(id: string) {
+    const motorcycleODM = new MotorcycleODM();
+    
+    const result = await motorcycleODM.deleteById(id);
+
+    return result;
+  }
 }
 
 export default MotorcycleService;

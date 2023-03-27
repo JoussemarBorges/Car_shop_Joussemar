@@ -48,6 +48,14 @@ class CarService {
 
     return updatedCarData;
   }
+
+  static async deleteById(id: string) {
+    const carODM = new CarODM();
+    
+    const result = await carODM.deleteById(id);
+
+    return result;
+  }
 }
 
 export default CarService;

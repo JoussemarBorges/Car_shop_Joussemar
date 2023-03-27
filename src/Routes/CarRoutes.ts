@@ -22,4 +22,6 @@ carRoutes.put(
   '/:id',
   CarController.updateCarById,
 );
+
+carRoutes.delete('/:id', CarController.deleteById);
 export default carRoutes;

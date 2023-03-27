@@ -22,5 +22,6 @@ motorcycleRoutes.put(
   '/:id',
   MotorcycleController.updateMotorcycleById,
 );
+motorcycleRoutes.delete('/:id', MotorcycleController.deleteById);
 
 export default motorcycleRoutes;
