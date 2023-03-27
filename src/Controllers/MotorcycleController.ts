@@ -4,7 +4,7 @@ import IMotorcycle from '../Interfaces/IMotorcycle';
 import MotorcycleService from '../Services/MotorcycleService';
 
 const errInvalidIdMsg = 'Invalid mongo id';
-const errNotFoundMsg = 'Car not found';
+const errNotFoundMsg = 'Motorcycle not found';
 
 class MotorcycleController {
   static async createNewMotorcycle(req: Request, res: Response, next: NextFunction) {
