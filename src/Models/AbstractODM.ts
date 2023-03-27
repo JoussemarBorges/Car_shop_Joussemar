@@ -21,8 +21,12 @@ abstract class AbstractODM<T> {
     return this.model.findById(id);
   } 
 
-  public async updateOne(id: object | number | string, dataForUpdate: object): Promise<T | null> {
-    const result = await this.model.findByIdAndUpdate(id, { $set: { ...dataForUpdate } });
+  public async findByIdAndUpdate(
+    id: object | number | string,
+    dataForUpdate: object,
+  ): Promise<T | null> {
+    const result = await this.model
+      .findByIdAndUpdate(id, { $set: { ...dataForUpdate } }, { new: true });
 
     return result;
   } 

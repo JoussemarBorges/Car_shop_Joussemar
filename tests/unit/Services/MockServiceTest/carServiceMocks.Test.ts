@@ -1,3 +1,7 @@
+const validIdMock = '641f420c557b7e4e64aefa34';
+
+const invalidIdMock = 'invalidId';
+
 const carDataInput = {
   model: 'Fusca',
   year: 1980,
@@ -51,4 +55,10 @@ const allCarsMock = [
   },
 ];
 
-export { carDataOutput, carDataInput, allCarsMock };
+export { 
+  carDataOutput,
+  carDataInput,
+  allCarsMock,
+  validIdMock,
+  invalidIdMock,
+};

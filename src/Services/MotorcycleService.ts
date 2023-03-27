@@ -41,12 +41,11 @@ class MotorcycleService {
   Promise<Motorcycle | null> {
     const motorcycleODM = new MotorcycleODM();
     
-    const result = await motorcycleODM.updateOne(id, dataForUpdate);
-    if (!result) return result;
-
-    const updatedMotorcycleData = await this.getMotorcycleById(id);
-
-    return updatedMotorcycleData;
+    const result = await motorcycleODM.findByIdAndUpdate(id, dataForUpdate);
+    // if (!result) return result;
+    
+    const updatedMotorcycle = this.createMotorcycleDomain(result);
+    return updatedMotorcycle;
   }
 }
 

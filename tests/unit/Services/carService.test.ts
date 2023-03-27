@@ -1,7 +1,14 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
 import { Model } from 'mongoose';
-import { carDataInput, carDataOutput, allCarsMock } from './MockServiceTest/carServiceMocks.Test';
+import { 
+  carDataInput,
+  carDataOutput,
+  allCarsMock,
+  invalidIdMock,
+  validIdMock,
+} from './MockServiceTest/carServiceMocks.Test';
+
 import CarService from '../../../src/Services/CarService';
 
 describe('Testes da carService', function () {
@@ -36,10 +43,23 @@ describe('Testes da carService', function () {
       },
     );
     it('Deveria retornar null em caso de receber um id não cadastrado', async function () {
-      const id = 'invalidID';
       sinon.stub(Model, 'findById').resolves(null);
 
-      const result = await CarService.getCarById(id);
+      const result = await CarService.getCarById(invalidIdMock);
+        
+      expect(result).to.be.equal(null);
+    });
+    it('Deveria ser possível atualizar um carro com sucesso', async function () {
+      sinon.stub(Model, 'findByIdAndUpdate').resolves(carDataOutput);
+
+      const result = await CarService.updateCarById(validIdMock, carDataInput);
+
+      expect(result).to.be.deep.equal(carDataOutput);
+    });
+    it('Deveria retornar null em caso de receber um id inválido', async function () {
+      sinon.stub(Model, 'findByIdAndUpdate').resolves(null);
+
+      const result = await CarService.updateCarById(invalidIdMock, carDataInput);
         
       expect(result).to.be.equal(null);
     });

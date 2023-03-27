@@ -39,10 +39,12 @@ class CarService {
   static async updateCarById(id: string, dataForUpdate: ICar): Promise<Car | null> {
     const carODM = new CarODM();
     
-    const result = await carODM.updateOne(id, dataForUpdate);
-    if (!result) return result;
+    const result = await carODM.findByIdAndUpdate(id, dataForUpdate);
+    // if (!result) return result;
 
-    const updatedCarData = await this.getCarById(id);
+    // const updatedCarData = await this.getCarById(id);
+
+    const updatedCarData = this.createCarDomain(result);
 
     return updatedCarData;
   }
