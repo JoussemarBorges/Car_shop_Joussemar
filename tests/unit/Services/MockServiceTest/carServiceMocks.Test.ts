@@ -55,10 +55,17 @@ const allCarsMock = [
   },
 ];
 
+const returnDeletedData = {
+  _id: validIdMock,
+  ...carDataInput,
+  __v: 0,
+};
+
 export { 
   carDataOutput,
   carDataInput,
   allCarsMock,
   validIdMock,
   invalidIdMock,
+  returnDeletedData,
 };

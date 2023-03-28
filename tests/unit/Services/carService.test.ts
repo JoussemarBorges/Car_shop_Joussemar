@@ -7,6 +7,7 @@ import {
   allCarsMock,
   invalidIdMock,
   validIdMock,
+  returnDeletedData,
 } from './MockServiceTest/carServiceMocks.Test';
 
 import CarService from '../../../src/Services/CarService';
@@ -62,6 +63,13 @@ describe('Testes da carService', function () {
       const result = await CarService.updateCarById(invalidIdMock, carDataInput);
         
       expect(result).to.be.equal(null);
+    });
+    it('Deveria ser possível deletar um carro por um Id correto', async function () {
+      sinon.stub(Model, 'findByIdAndDelete').resolves(returnDeletedData);
+
+      const result = await CarService.deleteById(validIdMock);
+
+      expect(result).to.be.deep.equal(returnDeletedData);
     });
   });
 });

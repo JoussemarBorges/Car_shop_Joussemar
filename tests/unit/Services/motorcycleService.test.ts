@@ -6,7 +6,8 @@ import {
   motorcycleDataOutput,
   allMotorcyclesMock,
   validIdMock,
-  invalidIdMock, 
+  invalidIdMock,
+  returnDeletedData, 
 } from './MockServiceTest/motorcycleMocks.test';
 import MotorcycleService from '../../../src/Services/MotorcycleService';
 
@@ -63,6 +64,13 @@ describe('Testes da motorcycleService', function () {
         .updateMotorcycleById(invalidIdMock, motorcycleDataInput);
         
       expect(result).to.be.equal(null);
+    });
+    it('Deveria ser possível deletar uma motocycle por um Id correto', async function () {
+      sinon.stub(Model, 'findByIdAndDelete').resolves(returnDeletedData);
+
+      const result = await MotorcycleService.deleteById(validIdMock);
+
+      expect(result).to.be.deep.equal(returnDeletedData);
     });
   });
 });

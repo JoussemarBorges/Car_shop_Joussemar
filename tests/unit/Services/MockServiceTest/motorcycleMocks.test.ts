@@ -58,10 +58,17 @@ const allMotorcyclesMock = [
   },
 ];
 
+const returnDeletedData = {
+  _id: validIdMock,
+  ...motorcycleDataInput,
+  __v: 0,
+};
+
 export { 
   motorcycleDataOutput,
   motorcycleDataInput,
   allMotorcyclesMock,
   validIdMock,
   invalidIdMock,
+  returnDeletedData,
 };

@@ -64,7 +64,7 @@ class MotorcycleController {
 
       const isMotorcycleDeleted = await MotorcycleService.deleteById(id);
       if (!isMotorcycleDeleted) return res.status(404).json({ message: errNotFoundMsg });
-      return res.status(200).send();
+      return res.status(200).json(isMotorcycleDeleted);
     } catch (error) {
       return res.status(422).json({ message: errInvalidIdMsg });
     }
