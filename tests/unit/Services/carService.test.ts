@@ -50,6 +50,9 @@ describe('Testes da carService', function () {
         
       expect(result).to.be.equal(null);
     });
+  });
+  
+  describe('Testando a atualização de um Car', function () {
     it('Deveria ser possível atualizar um carro com sucesso', async function () {
       sinon.stub(Model, 'findByIdAndUpdate').resolves(carDataOutput);
 
@@ -64,6 +67,9 @@ describe('Testes da carService', function () {
         
       expect(result).to.be.equal(null);
     });
+  });
+
+  describe('Testando a deleção de um car', function () {
     it('Deveria ser possível deletar um carro por um Id correto', async function () {
       sinon.stub(Model, 'findByIdAndDelete').resolves(returnDeletedData);
 
