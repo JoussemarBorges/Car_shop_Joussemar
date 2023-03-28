@@ -13,6 +13,7 @@ import {
 import CarService from '../../../src/Services/CarService';
 
 describe('Testes da carService', function () {
+  afterEach(sinon.restore);
   describe('Teste o registro de um carro', function () {
     it('Deveria registrar um novo carro com sucesso', async function () {
       sinon.stub(Model, 'create').resolves(carDataOutput);
@@ -24,7 +25,6 @@ describe('Testes da carService', function () {
   });
   
   describe('Teste da rota /cars e /cars/:id', function () {
-    afterEach(sinon.restore);
     it('Deveria ser possível retornar todos os carros cadastrados', async function () {
       sinon.stub(Model, 'find').resolves(allCarsMock);
 
@@ -51,7 +51,7 @@ describe('Testes da carService', function () {
       expect(result).to.be.equal(null);
     });
   });
-  
+
   describe('Testando a atualização de um Car', function () {
     it('Deveria ser possível atualizar um carro com sucesso', async function () {
       sinon.stub(Model, 'findByIdAndUpdate').resolves(carDataOutput);

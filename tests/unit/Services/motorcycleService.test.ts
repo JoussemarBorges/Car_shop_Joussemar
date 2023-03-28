@@ -12,6 +12,7 @@ import {
 import MotorcycleService from '../../../src/Services/MotorcycleService';
 
 describe('Testes da motorcycleService', function () {
+  afterEach(sinon.restore);
   describe('Teste o registro de uma motorcycle', function () {
     it('Deveria registrar um novo motorcycle com sucesso', async function () {
       sinon.stub(Model, 'create').resolves(motorcycleDataOutput);
@@ -23,7 +24,6 @@ describe('Testes da motorcycleService', function () {
   });
   
   describe('Teste da rota /motorcycles e /motorcycles/:id', function () {
-    afterEach(sinon.restore);
     it('Deveria ser possível retornar todas as motorcycles cadastradas', async function () {
       sinon.stub(Model, 'find').resolves(allMotorcyclesMock);
 
