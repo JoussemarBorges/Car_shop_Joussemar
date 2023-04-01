@@ -8,7 +8,7 @@ import {
   validIdMock,
   invalidIdMock,
   returnDeletedData, 
-} from './MockServiceTest/motorcycleMocks.test';
+} from './MockServiceTest/motorcycle.Mocks.test';
 import MotorcycleService from '../../../src/Services/MotorcycleService';
 
 describe('Testes da motorcycleService', function () {
