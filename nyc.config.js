@@ -12,5 +12,8 @@ module.exports = {
     "html",
     "lcov"
   ],
+  "exclude": [
+    "src/Models/Connection.ts"
+  ],
   "all": true
 }

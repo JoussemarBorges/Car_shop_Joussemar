@@ -1,4 +1,8 @@
+import IMotorcycle from '../../src/Interfaces/IMotorcycle';
+
 const validIdMock = '6420c50538636ef74cf1009d';
+
+const notRegisterId = '641f420c557b7e4e64aefa45';
 
 const invalidIdMock = 'invalidId';
 
@@ -23,7 +27,7 @@ const motorcycleDataOutput = {
   engineCapacity: 250,
 };
 
-const allMotorcyclesMock = [
+const allMotorcyclesMock: IMotorcycle[] = [
   {
     id: '6420c43538636ef74cf10099',
     model: 'Honda Cb 600f Hornet',
@@ -69,4 +73,5 @@ export {
   validIdMock,
   invalidIdMock,
   returnDeletedData,
+  notRegisterId,
 };

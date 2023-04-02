@@ -8,11 +8,11 @@ import {
   invalidIdMock,
   validIdMock,
   returnDeletedData,
-} from './MockServiceTest/car.ServiceMocks.Test';
+} from '../../mocks/carMocks';
 
 import CarService from '../../../src/Services/CarService';
 
-describe('Testes da carService', function () {
+describe('Testes unitários da camada carService', function () {
   afterEach(sinon.restore);
   describe('Teste o registro de um carro', function () {
     it('Deveria registrar um novo carro com sucesso', async function () {

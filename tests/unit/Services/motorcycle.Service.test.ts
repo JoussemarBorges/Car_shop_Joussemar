@@ -2,22 +2,21 @@ import { expect } from 'chai';
 import sinon from 'sinon';
 import { Model } from 'mongoose';
 import { 
-  motorcycleDataInput,
   motorcycleDataOutput,
   allMotorcyclesMock,
   validIdMock,
   invalidIdMock,
   returnDeletedData, 
-} from './MockServiceTest/motorcycle.Mocks.test';
+} from '../../mocks/motorcyclesMocks';
 import MotorcycleService from '../../../src/Services/MotorcycleService';
 
-describe('Testes da motorcycleService', function () {
+describe('Testes unitários da camada motorcycleService', function () {
   afterEach(sinon.restore);
   describe('Teste o registro de uma motorcycle', function () {
     it('Deveria registrar um novo motorcycle com sucesso', async function () {
       sinon.stub(Model, 'create').resolves(motorcycleDataOutput);
       
-      const result = await MotorcycleService.registerMotorcycle(motorcycleDataInput);
+      const result = await MotorcycleService.registerMotorcycle(allMotorcyclesMock[0]);
   
       expect(result).to.be.deep.equal(motorcycleDataOutput);
     });
@@ -34,7 +33,7 @@ describe('Testes da motorcycleService', function () {
     it(
       'Deveria ser possível retornar um registro de uma motorcycle a partir de um Id específico',
       async function () {
-        const { id } = allMotorcyclesMock[0];
+        const id = '6420c43538636ef74cf10099';
         sinon.stub(Model, 'findById').resolves(allMotorcyclesMock[0]);
 
         const result = await MotorcycleService.getMotorcycleById(id);
@@ -57,7 +56,7 @@ describe('Testes da motorcycleService', function () {
       sinon.stub(Model, 'findByIdAndUpdate').resolves(motorcycleDataOutput);
 
       const result = await MotorcycleService
-        .updateMotorcycleById(validIdMock, motorcycleDataInput);
+        .updateMotorcycleById(validIdMock, allMotorcyclesMock[0]);
 
       expect(result).to.be.deep.equal(motorcycleDataOutput);
     });
@@ -65,7 +64,7 @@ describe('Testes da motorcycleService', function () {
       sinon.stub(Model, 'findByIdAndUpdate').resolves(null);
 
       const result = await MotorcycleService
-        .updateMotorcycleById(invalidIdMock, motorcycleDataInput);
+        .updateMotorcycleById(invalidIdMock, allMotorcyclesMock[0]);
         
       expect(result).to.be.equal(null);
     });

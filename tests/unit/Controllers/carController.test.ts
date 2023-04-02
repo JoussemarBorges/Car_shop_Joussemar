@@ -6,16 +6,15 @@ import CarController from '../../../src/Controllers/CarController';
 import Car from '../../../src/Domains/Car';
 
 import {
-  // carDataInput,
-  // carDataOutput,
+  carDataInput,
   allCarsMock,
   invalidIdMock,
   validIdMock,
-  // returnDeletedData,
   notRegisterId,
+  returnDeletedData,
 } from '../../mocks/carMocks';
 
-describe('Testes para a CarController', function () {
+describe('Testes Unitários da Camada carController', function () {
   let req = {} as Request;
   const res = {} as Response;
   let next: SinonStub;
@@ -31,6 +30,10 @@ describe('Testes para a CarController', function () {
   afterEach(function () {
     Sinon.restore();
   });
+
+  const ID_INVALID_DESCRIPTION = 'Deveria lançar um erro para um Id inválido';
+  const ID_NOT_FOUND_DESCRIPTION = 'Deveria lançar um erro para um Id não cadastrado';
+  const CAR_NOT_FOUND_MESSAGE = 'Car not found';
 
   describe('Testando a criação de um carro', function () {
     it('Deveria ser possível criar um novo carro no BD', async function () {
@@ -86,22 +89,95 @@ describe('Testes para a CarController', function () {
       expect((res.json as SinonStub).calledWith(carDataOutput)).to.equal(true);
     });
 
-    it('deveria lançar um erro para um Id inválido', async function () {
+    it(ID_INVALID_DESCRIPTION, async function () {
       req = { params: invalidIdMock } as unknown as Request;
       
       await CarController.getCarById(req, res, next);
-      
+
       expect((res.status as SinonStub).calledWith(422)).to.equal(true);
     });
 
-    it('deveria lançar um erro para um Id não cadastrado', async function () {
+    it(ID_NOT_FOUND_DESCRIPTION, async function () {
       req = { params: notRegisterId } as unknown as Request;
 
       Sinon.stub(CarService, 'getCarById').resolves(null);
       await CarController.getCarById(req, res, next);
 
       expect((res.status as SinonStub).calledWith(404)).to.equal(true);
-      expect((res.json as SinonStub).calledWith({ message: 'Car not Found' }));
+      expect((res.json as SinonStub).calledWith({ message: CAR_NOT_FOUND_MESSAGE }));
+    });
+  });
+
+  describe('Testanto a atualização de um carro', function () {
+    it('Deveria atualizar um carro com sucesso', async function () {
+      req = { 
+        params: notRegisterId,
+        body: carDataInput,
+      } as unknown as Request;
+
+      const carDataOutput: Car = new Car(allCarsMock[0]);
+
+      Sinon.stub(CarService, 'updateCarById').resolves(carDataOutput);
+      await CarController.updateCarById(req, res, next);
+
+      expect((res.status as SinonStub).calledWith(200)).to.equal(true);
+      expect((res.json as SinonStub).calledWith(carDataOutput)).to.equal(true);
+    });
+
+    it(ID_INVALID_DESCRIPTION, async function () {
+      req = { 
+        params: invalidIdMock,
+        body: carDataInput,
+      } as unknown as Request;
+
+      await CarController.updateCarById(req, res, next);
+
+      expect((res.status as SinonStub).calledWith(422)).to.equal(true);
+    });
+
+    it(ID_NOT_FOUND_DESCRIPTION, async function () {
+      req = { 
+        params: notRegisterId,
+        body: carDataInput,
+      } as unknown as Request;
+
+      Sinon.stub(CarService, 'updateCarById').resolves(null);
+      await CarController.updateCarById(req, res, next);
+
+      expect((res.status as SinonStub).calledWith(404)).to.equal(true);
+      expect((res.json as SinonStub).calledWith({ message: CAR_NOT_FOUND_MESSAGE }));
+    });
+  });
+
+  describe('Testando a deleção de um carro', function () {
+    it('Deveria deletar um carro pelo Id com sucesso', async function () {
+      req = { params: validIdMock } as unknown as Request;
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const mockDeleted = returnDeletedData as unknown | null | any;
+
+      Sinon.stub(CarService, 'deleteById').resolves(mockDeleted);
+      await CarController.deleteById(req, res, next);
+
+      expect((res.status as SinonStub).calledWith(200)).to.equal(true);
+    });
+
+    it(ID_INVALID_DESCRIPTION, async function () {
+      req = { params: invalidIdMock } as unknown as Request;
+      
+      await CarController.deleteById(req, res, next);
+
+      expect((res.status as SinonStub).calledWith(422)).to.equal(true);
+    });
+
+    it(ID_NOT_FOUND_DESCRIPTION, async function () {
+      req = { params: notRegisterId } as unknown as Request;
+
+      Sinon.stub(CarService, 'deleteById').resolves(null);
+      await CarController.deleteById(req, res, next);
+
+      expect((res.status as SinonStub).calledWith(404)).to.equal(true);
+      expect((res.json as SinonStub).calledWith({ message: CAR_NOT_FOUND_MESSAGE }));
     });
   });
 });
