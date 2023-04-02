@@ -9,7 +9,7 @@ Me ogrulho muito desse projeto por ter conseguido aplicar com clareza os conceit
 
 ## Orientações
 <details>
-<summary><strong>Para rodar o projeto localmente utilizando o docker:🐳</strong></summary>
+<summary><strong>🐳Para rodar o projeto localmente utilizando o docker:</strong></summary>
 
     1. Clone o repositório
         - Use o comando: `git clone https://github.com/JoussemarBorges/Car_shop_Joussemar`.
@@ -36,7 +36,7 @@ Me ogrulho muito desse projeto por ter conseguido aplicar com clareza os conceit
 
 ### Há duas coleções no Data Base car_shop_db. As regras das requisições se aplicam para ambas as coleções, com pequenas diferenças que serão exemplificadas.
 <details>
-<summary><strong>Cadastra um veículo na coleção correspondente (cars ou motorcycles) do DB.</strong></summary>
+<summary><strong>Cadastra um veículo na coleção correspondente (cars ou motorcycles) do DB:</strong></summary>
 
 ```http
 POST /cars/
@@ -161,7 +161,7 @@ GET /motorcycle/
 </details>
 
 <details>
-<summary><strong>Retorna um veículo de um Id específico</strong></summary>
+<summary><strong>Retorna um veículo de um Id específico:</strong></summary>
 
 ```http
 GET /cars/${id}
@@ -209,7 +209,7 @@ GET /motorcycle/${id}
 </details>
 
 <details>
-<summary><strong>Atualiza um veículo com um Id específico</strong></summary>
+<summary><strong>Atualiza um veículo com um Id específico:</strong></summary>
 
 ```http
 PUT /cars/${id}
@@ -284,7 +284,7 @@ PUT /motorcycle/${id}
 </details>
 
 <details>
-<summary><strong>Excluí um veículo de um Id específico</strong></summary>
+<summary><strong>Excluí um veículo de um Id específico:</strong></summary>
 
 ```http
 DELETE /cars/${id}
@@ -305,3 +305,6 @@ DELETE /motorcycles/${id}
         Car: { "message": "Car not found" }
 
         Motorcycle: { "message": "Motorcycle not found" }
+    
+## Tecnologias utilizadas:
+    
