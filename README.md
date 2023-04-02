@@ -21,7 +21,7 @@ Me ogrulho muito desse projeto por ter conseguido aplicar com clareza os conceit
 
     3. Certifique-se de ter o docker instalado na versão 1.29 ou superior. Você pode verificar como instalar o docker na documentação: https://docs.docker.com/compose/install/.
 
-     4. O arquivo docker-compose.yml contém as configurações necessárias para rodar os serviços "app-car-shop" - que irá rodar o node - e "mongodb" que irá rodar o mongodb.
+    4. O arquivo docker-compose.yml contém as configurações necessárias para rodar os serviços "app-car-shop" - que irá rodar o node - e "mongodb" que irá rodar o mongodb.
         - Já esxiste um arquivo Dokcerfile na raiz do projeto com as configurações necessárias para montar a imagem do node.
 
     5. Para subir os containers, conforme as configurações acima, rode o comando:
