@@ -1,5 +1,7 @@
 const validIdMock = '641f420c557b7e4e64aefa34';
 
+const notRegisterId = '641f420c557b7e4e64aefa45';
+
 const invalidIdMock = 'invalidId';
 
 const carDataInput = {
@@ -68,4 +70,5 @@ export {
   validIdMock,
   invalidIdMock,
   returnDeletedData,
+  notRegisterId,
 };
