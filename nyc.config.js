@@ -5,15 +5,15 @@ module.exports = {
     "src/Services",
     "src/Controllers"
   ],
+  "exclude": [
+    "src/Models/Connection.ts"
+  ],
   "reporter": [
     "text",
     "text-summary",
     "json-summary",
     "html",
     "lcov"
-  ],
-  "exclude": [
-    "src/Models/Connection.ts"
   ],
   "all": true
 }
