@@ -5,9 +5,9 @@ module.exports = {
     "src/Services",
     "src/Controllers"
   ],
-  "exclude": [
-    "src/Models/Connection.ts"
-  ],
+  // "exclude": [
+  //   "src/Models/Connection.ts"
+  // ],
   "reporter": [
     "text",
     "text-summary",
